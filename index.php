@@ -22,43 +22,51 @@
 
 // TODO Votre code ici bas.
 
-/**
-  try {
-    $maConnexion = ........
+$server = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'intro_sql';
+
+try {
+    $maConnexion = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $pass);
+    $maConnexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $request = "
-        Ma super requête SQL pour créer une base de données.
+        CREATE TABLE intro_sql (
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            nom VARCHAR(30) NOT NULL,
+            rue VARCHAR(70) NOT NULL,
+            numero SMALLINT UNSIGNED NOT NULL,
+            code_postal SMALLINT UNSIGNED NOT NULL,
+            ville VARCHAR(50) NOT NULL,
+            pays VARCHAR(40) NOT NULL,
+            mail VARCHAR(100) NOT NULL,
+            date_enregistrement DATETIME DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE(mail) 
+        )
     ";
 
-    $maConnexion->une super méthode pour exécuter ma requete
+    $maConnexion->exec($request);
 
     echo "La base de données intro_sql a bien été créée.";
 }
 catch (PDOException $exception) {
     echo $exception->getMessage();
 }
-**/
 
-$servname = "localhost"; $db = "intro_sql"; $user = "root"; $password = "";
 
-try {
-    $connexion = new PDO("mysql:host=$servname;dbname=$db;charset=utf8", $user, $password);
-    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//delete
 
-    $sql = "DROP DATABASE intro_sql";
-    $connexion->exec($sql);
-
-    echo "<p>Base supprimé</p>";
-
+/*try {
+    $maConnexion = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $pass);
+    $maConnexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "DROP TABLE intro_sql";
+    $maConnexion->exec($sql);
+    echo "<p>Table supprimé</p>";
 }
 catch (PDOException $exception) {
     echo $exception->getMessage();
-}
-
-
-
-
-
+}*/
 
 
 
