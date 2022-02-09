@@ -22,7 +22,8 @@
 
 // TODO Votre code ici bas.
 
-try {
+/**
+  try {
     $maConnexion = ........
 
     $request = "
@@ -36,11 +37,23 @@ try {
 catch (PDOException $exception) {
     echo $exception->getMessage();
 }
+**/
 
+$servname = "localhost"; $db = "intro_sql"; $user = "root"; $password = "";
 
+try {
+    $connexion = new PDO("mysql:host=$servname;dbname=$db;charset=utf8", $user, $password);
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $sql = "DROP DATABASE intro_sql";
+    $connexion->exec($sql);
 
+    echo "<p>Base supprimé</p>";
 
+}
+catch (PDOException $exception) {
+    echo $exception->getMessage();
+}
 
 
 
